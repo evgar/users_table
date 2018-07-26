@@ -1,40 +1,39 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import '../App.css';
+import '../App.css'
 
-class TableRow extends Component {
-	constructor() {
-		super();
+class TableCell extends Component {
+	constructor(props) {
+		super(props)
 
-		this.state = {
-			editMode: false,
-		}
+		this.state = props.value
+
+		this.changeValue = this.changeValue.bind(this)
+	}
+
+	changeValue(e) {
+		const { value } = e.target
+		this.setState({ meaning : value }, () => {
+			this.props.onValueChange(this.state)
+		})
+
 	}
 
 	render() {
+		const { editMode } = this.props
+		const { meaning } = this.state
+
 		return (
-			<tbody>
-				{this.props.store.map(user =>
-					(<tr key={user.candidateName}>
-						{Object.values(user).map(characteristic =>
-							<td key={user.candidateName}>
-								<input type="text" value={characteristic} />
-							</td>
-						)}
-						<td>
-							<button></button>
-							<button></button>
-						</td>
-					</tr>)
-				)}
-			</tbody>
+			<td>
+				<input
+					type="text"
+					value={ meaning }
+					disabled={ !editMode }
+					onChange={ this.changeValue }
+				/>
+			</td>
 		)
 	}
 }
 
-export default connect(
-	state => ({
-		store: state
-	}),
-	dispatch => ({})
-)(TableRow);
+export default TableCell

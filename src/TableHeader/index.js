@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import '../App.css';
+import '../App.css'
 
 class TableHeader extends Component {
 	constructor(props) {
 		super()
 
-		this.headers =  Object.keys(Object.assign({}, ...props.store));
+		this.headers =  Object.keys(Object.assign({}, ...props.store))
 	}
 
 	render() {
@@ -28,4 +28,4 @@ export default connect(
 		store: state
 	}),
 	dispatch => ({})
-)(TableHeader);
+)(TableHeader)
