@@ -16,13 +16,11 @@ class TableCell extends Component {
 		this.setState({ meaning : value }, () => {
 			this.props.onValueChange(this.state)
 		})
-
 	}
 
 	render() {
 		const { editMode } = this.props
 		const { meaning } = this.state
-
 		return (
 			<td>
 				<input
@@ -33,6 +31,12 @@ class TableCell extends Component {
 				/>
 			</td>
 		)
+	}
+
+	componentDidUpdate(prevProps) {
+		if (prevProps.value.meaning !== this.props.value.meaning) {
+			this.setState({meaning: this.props.value.meaning})
+		}
 	}
 }
 

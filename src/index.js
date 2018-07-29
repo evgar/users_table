@@ -21,16 +21,17 @@ import registerServiceWorker from './registerServiceWorker';
 // };
 
 export const reducer = (state = data, action) => {
-	let updatedUsers = []
 	if (action.type === 'EDIT_USER') {
-		// console.log(action.user);
-		// console.log(action.user);
-		// console.log([...action.user, ...state]);
-		updatedUsers = state.splice(action.id, 1, action.user)
-		console.log(updatedUsers);
-		// return [...state, action.user]
+		const updatedUsers = [...state]
+		updatedUsers[action.id] = action.user
+		return updatedUsers
+
 	}
 
+	// if (action.type === 'CANCEL_EDIT') {
+	// 	return state
+	// }
+	//
 	return state;
 };
 
