@@ -13,6 +13,7 @@ class TableHeader extends Component {
 		return (
 			<thead>
 				<tr>
+					<th>#</th>
 					{
 						this.headers.map(header =>
 						<th key={header}>{header}</th>)

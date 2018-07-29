@@ -45,6 +45,7 @@ class TableRow extends Component {
 		const {id} = this.props
 		return (
 			<tr key={this.props.store[id].candidateName}>
+				<td>{this.props.id + 1}</td>
 				{Object.entries(user)
 					.map((user) => ({title : user[0], meaning : user[1]}))
 					.map(characteristic => {
