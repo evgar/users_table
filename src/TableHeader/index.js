@@ -1,26 +1,25 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import '../App.css'
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import "../App.css";
 
 class TableHeader extends Component {
 	constructor(props) {
-		super()
+		super();
 
-		this.headers =  Object.keys(Object.assign({}, ...props.store))
+		this.headers = Object.keys(Object.assign({}, ...props.store));
 	}
 
 	render() {
 		return (
 			<thead>
-				<tr>
-					<th>#</th>
-					{
-						this.headers.map(header =>
-						<th key={header}>{header}</th>)
-					}
-				</tr>
+			<tr>
+				<th>#</th>
+				{this.headers.map(header => (
+					<th key={header}>{header}</th>
+				))}
+			</tr>
 			</thead>
-		)
+		);
 	}
 }
 
@@ -29,4 +28,4 @@ export default connect(
 		store: state
 	}),
 	dispatch => ({})
-)(TableHeader)
+)(TableHeader);
