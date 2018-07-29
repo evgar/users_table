@@ -7,31 +7,18 @@ import App from './App';
 import data from './data'
 import registerServiceWorker from './registerServiceWorker';
 
-// const initialState = data.map((item, i) => ({
-// 	...item,
-// 	id: i + 1
-// }));
-
-// const initialState = {
-// 	items: items,
-// }
-
-// const initialState = {
-// 	isOpen: false,
-// };
-
 export const reducer = (state = data, action) => {
-	if (action.type === 'EDIT_USER') {
-		const updatedUsers = [...state]
-		updatedUsers[action.id] = action.user
-		return updatedUsers
-
+	if (action.type === 'EDIT_ITEM') {
+		const updatedItems = [...state]
+		updatedItems[action.id] = action.user
+		return updatedItems
 	}
 
-	// if (action.type === 'CANCEL_EDIT') {
-	// 	return state
-	// }
-	//
+	if (action.type === 'DELETE_ITEM') {
+		const updatedItems = state.filter((item, i) => i !== action.id)
+		return updatedItems
+	}
+
 	return state;
 };
 

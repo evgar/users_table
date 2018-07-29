@@ -14,14 +14,15 @@ class TableRow extends Component {
 
 		this.updateUserData = this.updateUserData.bind(this)
 		this.cancelEdition = this.cancelEdition.bind(this)
+		this.deleteItem = this.deleteItem.bind(this)
 	}
 
 	changeEditMode() {
 		this.setState(prevState => ({editMode: !prevState.editMode}))
 	}
 
-	editUser() {
-		this.props.onEditUser(this.state.user, this.props.id)
+	editItem() {
+		this.props.onEditItem(this.state.user, this.props.id)
 	}
 
 	updateUserData(info) {
@@ -33,6 +34,10 @@ class TableRow extends Component {
 		const unchangedData = this.props.store[this.props.id]
 		this.setState({user: unchangedData})
 		this.changeEditMode()
+	}
+
+	deleteItem () {
+		this.props.onDeleteItem(this.props.id)
 	}
 
 	render() {
@@ -54,11 +59,11 @@ class TableRow extends Component {
 					{!editMode ?
 						[
 							<button key="edit" onClick={() => {this.changeEditMode()}}>Edit</button>,
-							<button key="delete">Delete</button>
+							<button key="delete" onClick={this.deleteItem}>Delete</button>
 						]
 						:
 						[
-							<button key="save" onClick={() => {this.changeEditMode(); this.editUser()}}>Save</button>,
+							<button key="save" onClick={() => {this.changeEditMode(); this.editItem()}}>Save</button>,
 							<button key="cancel" onClick={this.cancelEdition}>Cancel</button>
 						]
 					}
@@ -73,11 +78,11 @@ export default connect(
 		store: state
 	}),
 	dispatch => ({
-		onEditUser: (user, id) => {
-			dispatch({type: 'EDIT_USER',  user, id})
+		onEditItem: (user, id) => {
+			dispatch({type: 'EDIT_ITEM',  user, id})
 		},
-		onCancelEdition: () => {
-			dispatch({type: 'CANCEL_EDIT'})
+		onDeleteItem: (id) => {
+			dispatch({type: 'DELETE_ITEM', id})
 		}
 	})
 )(TableRow)
