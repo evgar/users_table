@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "../App.css";
+import Button from '@material-ui/core/Button';
 import Papa from 'papaparse';
+import "../App.css";
 
 class ExportToCSV extends Component {
 	render() {
 		const toCSV =  Papa.unparse(this.props.store)
-		return <button>
-			<a href={`data:text/csv;charset=utf-8, ${toCSV}`} download="candidates.csv">Download CSV</a>
-			</button>
+		return 	<Button style={{margin: '10px'}}>
+					<a href={`data:text/csv;charset=utf-8, ${toCSV}`} download="candidates.csv">EXPORT TO CSV</a>
+				</Button>
 	}
 }
 

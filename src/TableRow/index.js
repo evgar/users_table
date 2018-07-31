@@ -1,8 +1,23 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import TableCell from "../TableCell";
+import React, {Component} from "react"
+import {connect} from "react-redux"
+import TableCell from "../TableCell"
+import MaterialTableRow from '@material-ui/core/TableRow'
+import MaterialTableCell from '@material-ui/core/TableCell'
+import Button from '@material-ui/core/Button';
 import "../App.css";
 
+const styles = {
+	buttonCell: {
+		textAlign: 'center'
+	},
+	tableButton: {
+		margin: '5px',
+		minWidth: '90px'
+	},
+	counterCell: {
+		textAlign: 'center'
+	}
+}
 class TableRow extends Component {
 	constructor(props) {
 		super(props);
@@ -18,7 +33,7 @@ class TableRow extends Component {
 	}
 
 	changeEditMode() {
-		this.setState(prevState => ({ editMode: !prevState.editMode }));
+		this.setState(prevState => ({editMode: !prevState.editMode}));
 	}
 
 	editItem() {
@@ -26,13 +41,13 @@ class TableRow extends Component {
 	}
 
 	updateUserData(info) {
-		const preparedInfo = { [info.title]: info.meaning };
-		this.setState({ user: { ...this.state.user, ...preparedInfo } });
+		const preparedInfo = {[info.title]: info.meaning};
+		this.setState({user: {...this.state.user, ...preparedInfo}});
 	}
 
 	cancelEdition() {
 		const unchangedData = this.props.store[this.props.id];
-		this.setState({ user: unchangedData });
+		this.setState({user: unchangedData});
 		this.changeEditMode();
 	}
 
@@ -41,13 +56,13 @@ class TableRow extends Component {
 	}
 
 	render() {
-		const { editMode, user } = this.state;
-		const { id } = this.props;
+		const {editMode, user} = this.state;
+		const {id} = this.props;
 		return (
-			<tr key={this.props.store[id].candidateName}>
-				<td>{this.props.id + 1}</td>
+			<MaterialTableRow key={this.props.store[id].candidateName} hover>
+				<MaterialTableCell style={styles.counterCell}>{this.props.id + 1}</MaterialTableCell>
 				{Object.entries(user)
-					.map(user => ({ title: user[0], meaning: user[1] }))
+					.map(user => ({title: user[0], meaning: user[1]}))
 					.map(characteristic => {
 						return (
 							<TableCell
@@ -58,38 +73,54 @@ class TableRow extends Component {
 							/>
 						);
 					})}
-				<td>
+				<MaterialTableCell style={styles.buttonCell}>
 					{!editMode ?
 						[
-							<button
+							<Button
 								key="edit"
 								onClick={() => {
 									this.changeEditMode();
 								}}
+								color="primary"
+								style={styles.tableButton}
+								variant="contained"
 							>
 								Edit
-							</button>,
-							<button key="delete" onClick={this.deleteItem}>
+							</Button>,
+							<Button key="delete"
+									onClick={this.deleteItem}
+									color="secondary"
+									variant="contained"
+									style={styles.tableButton}
+							>
 								Delete
-							</button>
+							</Button>
 						]
 						:
 						[
-							<button
+							<Button
 								key="save"
 								onClick={() => {
 									this.changeEditMode();
 									this.editItem();
 								}}
+								color="primary"
+								style={styles.tableButton}
+								variant="contained"
 							>
 								Save
-							</button>,
-							<button key="cancel" onClick={this.cancelEdition}>
+							</Button>,
+							<Button key="cancel"
+									onClick={this.cancelEdition}
+									color="secondary"
+									variant="contained"
+									style={styles.tableButton}
+							>
 								Cancel
-							</button>
+							</Button>
 						]}
-				</td>
-			</tr>
+				</MaterialTableCell>
+			</MaterialTableRow>
 		);
 	}
 }
@@ -100,10 +131,10 @@ export default connect(
 	}),
 	dispatch => ({
 		onEditItem: (user, id) => {
-			dispatch({ type: "EDIT_ITEM", user, id });
+			dispatch({type: "EDIT_ITEM", user, id});
 		},
 		onDeleteItem: id => {
-			dispatch({ type: "DELETE_ITEM", id });
+			dispatch({type: "DELETE_ITEM", id});
 		}
 	})
 )(TableRow);

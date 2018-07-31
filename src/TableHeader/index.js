@@ -1,6 +1,18 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, {Component} from "react";
+import {connect} from "react-redux";
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import TableCell from '@material-ui/core/TableCell';
+
 import "../App.css";
+
+const styles = {
+	headerCell: {
+		textAlign: 'center',
+		backgroundColor: 'black',
+		color: 'white'
+	}
+}
 
 class TableHeader extends Component {
 	constructor(props) {
@@ -10,16 +22,29 @@ class TableHeader extends Component {
 	}
 
 	render() {
+		// return (
+		// 	<thead>
+		// 	<tr>
+		// 		<th>#</th>
+		// 		{this.headers.map(header => (
+		// 			<th key={header}>{header}</th>
+		// 		))}
+		// 	</tr>
+		// 	</thead>
+		// );
 		return (
-			<thead>
-			<tr>
-				<th>#</th>
-				{this.headers.map(header => (
-					<th key={header}>{header}</th>
-				))}
-			</tr>
-			</thead>
-		);
+			<TableHead>
+				<TableRow>
+					<TableCell style={styles.headerCell}>#</TableCell>
+					{this.headers.map(header => (
+						<TableCell key={header} style={styles.headerCell}>
+							{header}
+						</TableCell>
+					))}
+					<TableCell style={styles.headerCell}>Action</TableCell>
+				</TableRow>
+			</TableHead>
+		)
 	}
 }
 
