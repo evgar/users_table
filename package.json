@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^1.4.2",
-    "@material-ui/icons": "^2.0.0",
+    "mdbreact": "^4.6.1",
     "papaparse": "^4.5.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",

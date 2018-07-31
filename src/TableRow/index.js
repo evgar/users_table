@@ -1,9 +1,6 @@
 import React, {Component} from "react"
 import {connect} from "react-redux"
 import TableCell from "../TableCell"
-import MaterialTableRow from '@material-ui/core/TableRow'
-import MaterialTableCell from '@material-ui/core/TableCell'
-import Button from '@material-ui/core/Button';
 import "../App.css";
 
 const styles = {
@@ -59,8 +56,8 @@ class TableRow extends Component {
 		const {editMode, user} = this.state;
 		const {id} = this.props;
 		return (
-			<MaterialTableRow key={this.props.store[id].candidateName} hover>
-				<MaterialTableCell style={styles.counterCell}>{this.props.id + 1}</MaterialTableCell>
+			<tr key={this.props.store[id].candidateName}>
+				<td className="text-center">{this.props.id + 1}</td>
 				{Object.entries(user)
 					.map(user => ({title: user[0], meaning: user[1]}))
 					.map(characteristic => {
@@ -73,54 +70,45 @@ class TableRow extends Component {
 							/>
 						);
 					})}
-				<MaterialTableCell style={styles.buttonCell}>
+				<td className="text-center">
 					{!editMode ?
 						[
-							<Button
+							<button
 								key="edit"
 								onClick={() => {
 									this.changeEditMode();
 								}}
-								color="primary"
-								style={styles.tableButton}
-								variant="contained"
+								className="btn btn-sm primary-color"
 							>
 								Edit
-							</Button>,
-							<Button key="delete"
-									onClick={this.deleteItem}
-									color="secondary"
-									variant="contained"
-									style={styles.tableButton}
-							>
+							</button>,
+							<button
+								key="delete"
+								onClick={this.deleteItem}
+								className="btn btn-sm danger-color">
 								Delete
-							</Button>
+							</button>
 						]
 						:
 						[
-							<Button
+							<button
 								key="save"
 								onClick={() => {
 									this.changeEditMode();
 									this.editItem();
 								}}
-								color="primary"
-								style={styles.tableButton}
-								variant="contained"
+								className="btn btn-sm primary-color"
 							>
 								Save
-							</Button>,
-							<Button key="cancel"
+							</button>,
+							<button key="cancel"
 									onClick={this.cancelEdition}
-									color="secondary"
-									variant="contained"
-									style={styles.tableButton}
-							>
+									className="btn btn-sm danger-color">
 								Cancel
-							</Button>
+							</button>
 						]}
-				</MaterialTableCell>
-			</MaterialTableRow>
+				</td>
+			</tr>
 		);
 	}
 }

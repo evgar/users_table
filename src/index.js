@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import { createStore} from "redux";
 import { Provider } from "react-redux";
 import "./index.css";
-import 'typeface-roboto'
 import App from "./App";
 import data from "./data";
 import registerServiceWorker from "./registerServiceWorker";

@@ -1,7 +1,4 @@
 import React, { Component } from "react"
-import MaterialTableCell from '@material-ui/core/TableCell'
-import Input from '@material-ui/core/Input';
-// import TextField from '@material-ui/core/TextField';
 import "../App.css";
 
 class TableCell extends Component {
@@ -24,15 +21,14 @@ class TableCell extends Component {
 		const { editMode } = this.props;
 		const { meaning } = this.state;
 		return (
-			<MaterialTableCell>
+			<td className="text-center">
 				<input
-					// type="text"
 					value={meaning}
 					disabled={!editMode}
 					onChange={this.changeValue}
-					className="form-control table-cell-input"
+					className="text-center form-control table-cell-input"
 				/>
-			</MaterialTableCell>
+			</td>
 		);
 	}
 
