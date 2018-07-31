@@ -8,15 +8,15 @@ import 'font-awesome/css/font-awesome.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
 
+
 class App extends Component {
   render() {
 	  return (
-	  	<section>
-			<Table className="table" />
+	  	<section className="table-responsive">
+			<Table />
 			<ExportToJSON />
 			<ExportToCSV />
 		</section>
-
     );
   }
 }

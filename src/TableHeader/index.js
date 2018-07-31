@@ -11,13 +11,14 @@ class TableHeader extends Component {
 
 	render() {
 		return (
-			<thead>
-			<tr>
-				<th>#</th>
-				{this.headers.map(header => (
-					<th key={header}>{header}</th>
-				))}
-			</tr>
+			<thead className="elegant-color-dark">
+				<tr className="white-text text-center">
+					<th scope="row">#</th>
+					{this.headers.map(header => (
+						<th key={header} scope="row">{header}</th>
+					))}
+					<th scope="row">Action</th>
+				</tr>
 			</thead>
 		);
 	}

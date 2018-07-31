@@ -45,7 +45,7 @@ class TableRow extends Component {
 		const { id } = this.props;
 		return (
 			<tr key={this.props.store[id].candidateName}>
-				<td>{this.props.id + 1}</td>
+				<td className="text-center">{this.props.id + 1}</td>
 				{Object.entries(user)
 					.map(user => ({ title: user[0], meaning: user[1] }))
 					.map(characteristic => {
@@ -58,7 +58,7 @@ class TableRow extends Component {
 							/>
 						);
 					})}
-				<td>
+				<td className="text-center">
 					{!editMode ?
 						[
 							<button
@@ -66,10 +66,14 @@ class TableRow extends Component {
 								onClick={() => {
 									this.changeEditMode();
 								}}
+								className="btn btn-sm primary-color"
 							>
 								Edit
 							</button>,
-							<button key="delete" onClick={this.deleteItem}>
+							<button
+								key="delete"
+								onClick={this.deleteItem}
+								className="btn btn-sm danger-color">
 								Delete
 							</button>
 						]
@@ -81,10 +85,13 @@ class TableRow extends Component {
 									this.changeEditMode();
 									this.editItem();
 								}}
+								className="btn btn-sm primary-color"
 							>
 								Save
 							</button>,
-							<button key="cancel" onClick={this.cancelEdition}>
+							<button key="cancel"
+									onClick={this.cancelEdition}
+									className="btn btn-sm danger-color">
 								Cancel
 							</button>
 						]}

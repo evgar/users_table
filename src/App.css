@@ -1,0 +1,13 @@
+.table-cell-input:disabled {
+	border: 1px solid transparent;
+	background-color: transparent !important;
+}
+.export-btn {
+	display: inline-block;
+	padding: 0 !important;
+}
+
+.export-btn > a {
+	display: inline-block;
+	padding: 15px;
+}

@@ -7,12 +7,12 @@ import "../App.css";
 class Table extends Component {
 	render() {
 		return (
-			<table>
+			<table className="table table-striped table-hover">
 				<TableHeader />
 				<tbody>
-				{this.props.store.map((user, i) => {
-					return <TableRow key={user.candidateName} user={user} id={i} />;
-				})}
+					{this.props.store.map((user, i) => {
+						return <TableRow key={user.candidateName} user={user} id={i} />;
+					})}
 				</tbody>
 			</table>
 		);

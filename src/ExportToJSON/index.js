@@ -11,8 +11,14 @@ class ExportToJSON extends Component {
 
 	render() {
 		console.log(this.toJSON);
-		return <button>
-				<a href={`data:text/json;charset=utf-8, ${this.toJSON}`} download="candidates.json">Download JSON</a>
+		return <button className="export-btn btn light-blue lighten-2">
+				<a
+					href={`data:text/json;charset=utf-8, ${this.toJSON}`}
+				   	download="candidates.json"
+					className="white-text"
+				>
+					Download JSON
+				</a>
 			</button>
 	}
 }

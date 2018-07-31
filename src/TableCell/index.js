@@ -21,12 +21,13 @@ class TableCell extends Component {
 		const { editMode } = this.props;
 		const { meaning } = this.state;
 		return (
-			<td>
+			<td className="text-center">
 				<input
 					type="text"
 					value={meaning}
 					disabled={!editMode}
 					onChange={this.changeValue}
+					className="text-center form-control table-cell-input"
 				/>
 			</td>
 		);
