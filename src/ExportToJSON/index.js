@@ -6,9 +6,8 @@ const ExportToJSON = props => {
 	const toJSON = JSON.stringify(props.store, null, "\t");
 	return (
 		<button className="export-btn btn light-blue lighten-2">
-			<a
-				href={`data:text/json;charset=utf-8, ${toJSON}`}
-				download="candidates.json"
+			<a 	href={`data:text/json;charset=utf-8, ${toJSON}`}
+				download="export.json"
 				className="white-text"
 			>
 				Download JSON
@@ -20,6 +19,5 @@ const ExportToJSON = props => {
 export default connect(
 	state => ({
 		store: state
-	}),
-	dispatch => ({})
+	})
 )(ExportToJSON);

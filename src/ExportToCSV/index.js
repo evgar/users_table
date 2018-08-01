@@ -3,12 +3,12 @@ import { connect } from "react-redux"
 import Papa from 'papaparse'
 import "../App.css"
 
-const ExportToCSV = (props) => {
-	const toCSV =  Papa.unparse(props.store)
+const ExportToCSV = props => {
+	const toCSV = Papa.unparse(props.store)
 	return (
 		<button className="export-btn btn light-blue lighten-2">
 			<a href={`data:text/csv;charset=utf-8, ${toCSV}`}
-			   download="candidates.csv"
+			   download="export.csv"
 			   className="white-text"
 			>
 				Download CSV
@@ -20,6 +20,5 @@ const ExportToCSV = (props) => {
 export default connect(
 	state => ({
 		store: state
-	}),
-	dispatch => ({})
+	})
 )(ExportToCSV)
