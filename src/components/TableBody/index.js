@@ -1,7 +1,7 @@
 import React from "react"
 import {connect} from "react-redux"
-import TableRow from "../TableRow"
-import "../App.css"
+import TableRow from "../TableRow/index"
+import "../../App.css"
 import AppendingRow from '../AppendingRow'
 
 const TableBody = props => {

@@ -1,8 +1,8 @@
 import React from "react"
 import {connect} from "react-redux"
-import TableHeader from "../TableHeader"
-import TableBody from "../TableBody"
-import "../App.css"
+import TableHeader from "../TableHeader/index"
+import TableBody from "../TableBody/index"
+import "../../App.css"
 
 const Table = () => {
 	return (

@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import Papa from 'papaparse'
-import "../App.css"
+import "../../App.css"
 
 const ExportToCSV = props => {
 	const toCSV = Papa.unparse(props.store)

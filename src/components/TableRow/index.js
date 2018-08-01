@@ -1,8 +1,8 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import TableCell from "../TableCell"
-import { editItem, deleteItem } from "../store/actions"
-import "../App.css"
+import { editItem, deleteItem } from "../../store/actions/index"
+import "../../App.css"
 
 class TableRow extends Component {
 	constructor(props) {
@@ -47,6 +47,7 @@ class TableRow extends Component {
 		return (
 			<tr key={this.props.store[id].candidateName}>
 				<td className="text-center">{this.props.id + 1}</td>
+
 				{Object.entries(user)
 					.map(user => {
 						const characteristic = {title: user[0], meaning: user[1]}
@@ -59,6 +60,7 @@ class TableRow extends Component {
 							/>
 						)
 					})}
+
 				<td className="text-center">
 					{!editMode ?
 						[
@@ -98,7 +100,7 @@ class TableRow extends Component {
 						]}
 				</td>
 			</tr>
-		);
+		)
 	}
 }
 
@@ -109,7 +111,7 @@ const mapStateToProps = (state) => (
 const mapDispatchToProps = {
 	editItem,
 	deleteItem,
-};
+}
 
 export default connect(
 	mapStateToProps,

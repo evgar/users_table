@@ -1,6 +1,6 @@
 import React from "react"
 import {connect} from "react-redux"
-import "../App.css"
+import "../../App.css"
 
 const TableHeader = props => {
 	const headers = Object.keys(Object.assign({}, ...props.store))

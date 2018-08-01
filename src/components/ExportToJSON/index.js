@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import "../App.css";
+import "../../App.css";
 
 const ExportToJSON = props => {
 	const toJSON = JSON.stringify(props.store, null, "\t");
