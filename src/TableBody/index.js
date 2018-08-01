@@ -2,6 +2,7 @@ import React from "react"
 import {connect} from "react-redux"
 import TableRow from "../TableRow"
 import "../App.css"
+import AppendingRow from '../AppendingRow'
 
 const TableBody = props => {
 	return (
@@ -14,10 +15,15 @@ const TableBody = props => {
 				/>
 			)
 		})}
+		<AppendingRow/>
 		</tbody>
 	)
 }
 
-export default connect(state => ({
-	store: state
-}))(TableBody)
+const mapStateToProps = (state) => (
+	{ store: state }
+)
+
+export default connect(
+	mapStateToProps
+)(TableBody)

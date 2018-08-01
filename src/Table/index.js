@@ -13,6 +13,10 @@ const Table = () => {
 	)
 }
 
-export default connect(state => ({
-	store: state
-}))(Table)
+const mapStateToProps = (state) => (
+	{ store: state }
+)
+
+export default connect(
+	mapStateToProps
+)(Table)

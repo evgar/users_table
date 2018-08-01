@@ -1,6 +1,7 @@
-import React, {Component} from "react"
-import {connect} from "react-redux"
+import React, { Component } from "react"
+import { connect } from "react-redux"
 import TableCell from "../TableCell"
+import { editItem, deleteItem } from "../store/actions"
 import "../App.css"
 
 class TableRow extends Component {
@@ -14,15 +15,19 @@ class TableRow extends Component {
 
 		this.updateUserData = this.updateUserData.bind(this)
 		this.cancelEdition = this.cancelEdition.bind(this)
-		this.deleteItem = this.deleteItem.bind(this)
+		this.onDeleteItem = this.onDeleteItem.bind(this)
 	}
 
 	changeEditMode() {
 		this.setState(prevState => ({editMode: !prevState.editMode}))
 	}
 
-	editItem() {
-		this.props.onEditItem(this.state.user, this.props.id)
+	onEditItem() {
+		this.props.editItem(this.state.user, this.props.id)
+	}
+
+	onDeleteItem() {
+		this.props.deleteItem(this.props.id)
 	}
 
 	updateUserData(info) {
@@ -34,10 +39,6 @@ class TableRow extends Component {
 		const unchangedData = this.props.store[this.props.id]
 		this.setState({user: unchangedData})
 		this.changeEditMode()
-	}
-
-	deleteItem() {
-		this.props.onDeleteItem(this.props.id)
 	}
 
 	render() {
@@ -65,13 +66,14 @@ class TableRow extends Component {
 									className="btn btn-sm primary-color"
 									onClick={() => {
 										this.changeEditMode()
-									}}
+										}
+									}
 							>
 								Edit
 							</button>,
 							<button key="delete"
 									className="btn btn-sm danger-color"
-									onClick={this.deleteItem}
+									onClick={this.onDeleteItem}
 							>
 								Delete
 							</button>
@@ -81,8 +83,9 @@ class TableRow extends Component {
 							<button key="save"
 									onClick={() => {
 										this.changeEditMode()
-										this.editItem()
-									}}
+										this.onEditItem()
+										}
+									}
 									className="btn btn-sm primary-color"
 							>
 								Save
@@ -99,16 +102,16 @@ class TableRow extends Component {
 	}
 }
 
+const mapStateToProps = (state) => (
+	{ store: state }
+)
+
+const mapDispatchToProps = {
+	editItem,
+	deleteItem,
+};
+
 export default connect(
-	state => ({
-		store: state
-	}),
-	dispatch => ({
-		onEditItem: (user, id) => {
-			dispatch({type: "EDIT_ITEM", user, id})
-		},
-		onDeleteItem: id => {
-			dispatch({type: "DELETE_ITEM", id})
-		}
-	})
+	mapStateToProps,
+	mapDispatchToProps
 )(TableRow)

@@ -22,8 +22,10 @@ const TableHeader = props => {
 		)
 }
 
+const mapStateToProps = (state) => (
+	{ store: state }
+)
+
 export default connect(
-	state => ({
-		store: state
-	})
+	mapStateToProps
 )(TableHeader)
