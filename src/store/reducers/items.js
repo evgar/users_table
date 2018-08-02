@@ -24,21 +24,35 @@ const data = [
 ]
 
 export const itemsActions = (state = data, action) => {
-	if (action.type === EDIT_ITEM) {
-		const items = [...state]
-		items[action.id] = action.user
-		return items
-	}
+	switch(action.type){
+		case EDIT_ITEM:
+			const items = [...state]
+			items[action.id] = action.user
+			return items
 
-	if (action.type === DELETE_ITEM) {
-		const updatedItems = state.filter((item, i) => i !== action.id)
-		return updatedItems
-	}
+		case DELETE_ITEM:
+			const newItems = state.filter((item, i) => i !== action.id)
+			return newItems
 
-	if (action.type === ADD_ITEM) {
-		const updatedItems = [...state]
-		return [...updatedItems, action.user]
+		case ADD_ITEM:
+			const updatedItems = [...state]
+			return [...updatedItems, action.user]
 	}
+	// if (action.type === EDIT_ITEM) {
+	// 	const items = [...state]
+	// 	items[action.id] = action.user
+	// 	return items
+	// }
+	//
+	// if (action.type === DELETE_ITEM) {
+	// 	const updatedItems = state.filter((item, i) => i !== action.id)
+	// 	return updatedItems
+	// }
+	//
+	// if (action.type === ADD_ITEM) {
+	// 	const updatedItems = [...state]
+	// 	return [...updatedItems, action.user]
+	// }
 
 	return state
 }
