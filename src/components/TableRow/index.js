@@ -1,7 +1,7 @@
-import React, { Component, Fragment } from "react"
-import { connect } from "react-redux"
+import React, {Component, Fragment} from "react"
+import {connect} from "react-redux"
 import TableCell from "../TableCell"
-import { editItem, deleteItem } from "../../store/actions"
+import {editItem, deleteItem} from "../../store/actions"
 import "../../App.css"
 
 class TableRow extends Component {
@@ -33,7 +33,7 @@ class TableRow extends Component {
 		this.props.deleteItem(this.props.id)
 	}
 
-	updateUserData({ title, meaning }) {
+	updateUserData({title, meaning}) {
 		const preparedInfo = {[title]: meaning};
 
 		this.setState({user: {...this.state.user, ...preparedInfo}})
@@ -52,7 +52,6 @@ class TableRow extends Component {
 		return (
 			<tr>
 				<td className="text-center">{id + 1}</td>
-
 				{Object.entries(user)
 					.map(user => {
 						const characteristic = {title: user[0], meaning: user[1]}
@@ -69,34 +68,34 @@ class TableRow extends Component {
 				<td className="text-center">
 					{!editMode
 						?
-	            <Fragment>
-								<button
-										className="btn btn-sm primary-color"
-										onClick={this.changeEditMode}
-								>
-									Edit
-								</button>
-								<button
-										className="btn btn-sm danger-color"
-										onClick={this.onDeleteItem}
-								>
-									Delete
-								</button>
-	            </Fragment>
+						<Fragment>
+							<button
+								className="btn btn-sm primary-color"
+								onClick={this.changeEditMode}
+							>
+								Edit
+							</button>
+							<button
+								className="btn btn-sm danger-color"
+								onClick={this.onDeleteItem}
+							>
+								Delete
+							</button>
+						</Fragment>
 						:
-	            <Fragment>
-								<button
-										onClick={this.onEditItem}
-										className="btn btn-sm primary-color"
-								>
-									Save
-								</button>
-								<button
-										onClick={this.cancelEdition}
-										className="btn btn-sm danger-color">
-									Cancel
-								</button>
-	            </Fragment>
+						<Fragment>
+							<button
+								onClick={this.onEditItem}
+								className="btn btn-sm primary-color"
+							>
+								Save
+							</button>
+							<button
+								onClick={this.cancelEdition}
+								className="btn btn-sm danger-color">
+								Cancel
+							</button>
+						</Fragment>
 					}
 				</td>
 			</tr>

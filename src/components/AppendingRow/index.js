@@ -43,7 +43,6 @@ class AppendingRow extends Component {
 		if (this.validateData()) {
 			this.props.addNewItem(this.state.user)
 		}
-		// this.setState({user: {}})
 	}
 
 	validateData() {
