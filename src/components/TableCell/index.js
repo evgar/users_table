@@ -6,8 +6,8 @@ class TableCell extends Component {
 		super(props);
 
 		this.state = {
-      title: props.value.title,
-      meaning: props.value.meaning,
+      		title: props.value.title,
+      		meaning: props.value.meaning,
 		};
 
 		this.changeValue = this.changeValue.bind(this)
@@ -31,15 +31,15 @@ class TableCell extends Component {
 					value={meaning}
 					disabled={!editMode}
 					onChange={this.changeValue}
-					className="text-center form-control table-cell-input"
+					className={"text-center form-control table-cell-input"}
 				/>
 			</td>
 		)
+
 	}
 
 	componentDidUpdate(prevProps) {
 		const { meaning } = this.props.value
-
 		if (prevProps.value.meaning !== meaning) {
 			this.setState({ meaning })
 		}

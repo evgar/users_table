@@ -11,3 +11,11 @@
 	display: inline-block;
 	padding: 15px;
 }
+
+.invalid-info {
+	color: #dc3545;
+}
+
+.invalid-info > td {
+	text-align: center;
+}

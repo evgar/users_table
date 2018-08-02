@@ -50,7 +50,7 @@ class TableRow extends Component {
 		const {id} = this.props
 
 		return (
-			<tr key={user.candidateName}>
+			<tr key={user.candidateName + id}>
 				<td className="text-center">{id + 1}</td>
 
 				{Object.entries(user)

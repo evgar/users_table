@@ -9,9 +9,9 @@ const TableBody = ({ data }) => {
 		{data.map((user, i) => {
 			return (
 				<TableRow
-					key={user.candidateName}
-				  user={user}
-				  id={i}
+					key={user.candidateName + i}
+					user={user}
+			  		id={i}
 				/>
 			)
 		})}

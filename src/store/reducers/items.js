@@ -1,4 +1,4 @@
-import {EDIT_ITEM, DELETE_ITEM} from '../constants'
+import {EDIT_ITEM, DELETE_ITEM, ADD_ITEM} from '../constants'
 
 const data = [
 	{
@@ -25,14 +25,19 @@ const data = [
 
 export const itemsActions = (state = data, action) => {
 	if (action.type === EDIT_ITEM) {
-		const updatedItems = [...state]
-		updatedItems[action.id] = action.user
-		return updatedItems
+		const items = [...state]
+		items[action.id] = action.user
+		return items
 	}
 
 	if (action.type === DELETE_ITEM) {
 		const updatedItems = state.filter((item, i) => i !== action.id)
 		return updatedItems
+	}
+
+	if (action.type === ADD_ITEM) {
+		const updatedItems = [...state]
+		return [...updatedItems, action.user]
 	}
 
 	return state
