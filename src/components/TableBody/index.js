@@ -1,17 +1,17 @@
 import React from "react"
-import {connect} from "react-redux"
-import TableRow from "../TableRow/index"
+import TableRow from "../TableRow"
 import "../../App.css"
 import AppendingRow from '../AppendingRow'
 
-const TableBody = props => {
+const TableBody = ({ data }) => {
 	return (
 		<tbody>
-		{props.store.map((user, i) => {
+		{data.map((user, i) => {
 			return (
-				<TableRow 	key={user.candidateName}
-						 	user={user}
-						 	id={i}
+				<TableRow
+					key={user.candidateName}
+				  user={user}
+				  id={i}
 				/>
 			)
 		})}
@@ -20,10 +20,4 @@ const TableBody = props => {
 	)
 }
 
-const mapStateToProps = (state) => (
-	{ store: state }
-)
-
-export default connect(
-	mapStateToProps
-)(TableBody)
+export default TableBody;

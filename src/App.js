@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
 import Table from './components/Table'
 import ExportToJSON from './components/ExportToJSON'
 import ExportToCSV from './components/ExportToCSV'
@@ -19,10 +18,4 @@ const App = () => {
 	)
 }
 
-const mapStateToProps = (state) => (
-	{ store: state }
-)
-
-export default connect(
-	mapStateToProps
-)(App)
+export default App;

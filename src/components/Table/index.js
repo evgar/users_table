@@ -1,22 +1,25 @@
-import React from "react"
+import React, { Component } from "react"
 import {connect} from "react-redux"
-import TableHeader from "../TableHeader/index"
-import TableBody from "../TableBody/index"
+import TableHeader from "../TableHeader"
+import TableBody from "../TableBody"
 import "../../App.css"
 
-const Table = () => {
-	return (
-		<table className="table table-striped table-hover">
-			<TableHeader/>
-			<TableBody/>
-		</table>
-	)
+class Table extends Component {
+	render() {
+		const { store } = this.props;
+    const headers = Object.keys(Object.assign({}, ...store));
+
+    return (
+      <table className="table table-striped table-hover">
+        <TableHeader headers={headers} />
+        <TableBody data={store} />
+      </table>
+    )
+	}
 }
 
 const mapStateToProps = (state) => (
 	{ store: state }
-)
+);
 
-export default connect(
-	mapStateToProps
-)(Table)
+export default connect(mapStateToProps)(Table)

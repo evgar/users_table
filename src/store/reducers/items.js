@@ -1,4 +1,4 @@
-import {EDIT_ITEM, DELETE_ITEM} from '../actions'
+import {EDIT_ITEM, DELETE_ITEM} from '../constants'
 
 const data = [
 	{

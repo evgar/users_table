@@ -1,7 +1,7 @@
-import React, { Component } from "react"
+import React, { Component, Fragment } from "react"
 import { connect } from "react-redux"
 import TableCell from "../TableCell"
-import { editItem, deleteItem } from "../../store/actions/index"
+import { editItem, deleteItem } from "../../store/actions"
 import "../../App.css"
 
 class TableRow extends Component {
@@ -16,6 +16,8 @@ class TableRow extends Component {
 		this.updateUserData = this.updateUserData.bind(this)
 		this.cancelEdition = this.cancelEdition.bind(this)
 		this.onDeleteItem = this.onDeleteItem.bind(this)
+		this.changeEditMode = this.changeEditMode.bind(this)
+		this.onEditItem = this.onEditItem.bind(this)
 	}
 
 	changeEditMode() {
@@ -23,6 +25,7 @@ class TableRow extends Component {
 	}
 
 	onEditItem() {
+		this.changeEditMode();
 		this.props.editItem(this.state.user, this.props.id)
 	}
 
@@ -30,13 +33,14 @@ class TableRow extends Component {
 		this.props.deleteItem(this.props.id)
 	}
 
-	updateUserData(info) {
-		const preparedInfo = {[info.title]: info.meaning}
+	updateUserData({ title, meaning }) {
+		const preparedInfo = {[title]: meaning};
+
 		this.setState({user: {...this.state.user, ...preparedInfo}})
 	}
 
 	cancelEdition() {
-		const unchangedData = this.props.store[this.props.id]
+		const unchangedData = this.props.user
 		this.setState({user: unchangedData})
 		this.changeEditMode()
 	}
@@ -44,9 +48,10 @@ class TableRow extends Component {
 	render() {
 		const {editMode, user} = this.state
 		const {id} = this.props
+
 		return (
-			<tr key={this.props.store[id].candidateName}>
-				<td className="text-center">{this.props.id + 1}</td>
+			<tr key={user.candidateName}>
+				<td className="text-center">{id + 1}</td>
 
 				{Object.entries(user)
 					.map(user => {
@@ -62,51 +67,42 @@ class TableRow extends Component {
 					})}
 
 				<td className="text-center">
-					{!editMode ?
-						[
-							<button key="edit"
-									className="btn btn-sm primary-color"
-									onClick={() => {
-										this.changeEditMode()
-										}
-									}
-							>
-								Edit
-							</button>,
-							<button key="delete"
-									className="btn btn-sm danger-color"
-									onClick={this.onDeleteItem}
-							>
-								Delete
-							</button>
-						]
+					{!editMode
+						?
+	            <Fragment>
+								<button
+										className="btn btn-sm primary-color"
+										onClick={this.changeEditMode}
+								>
+									Edit
+								</button>
+								<button
+										className="btn btn-sm danger-color"
+										onClick={this.onDeleteItem}
+								>
+									Delete
+								</button>
+	            </Fragment>
 						:
-						[
-							<button key="save"
-									onClick={() => {
-										this.changeEditMode()
-										this.onEditItem()
-										}
-									}
-									className="btn btn-sm primary-color"
-							>
-								Save
-							</button>,
-							<button key="cancel"
-									onClick={this.cancelEdition}
-									className="btn btn-sm danger-color">
-								Cancel
-							</button>
-						]}
+	            <Fragment>
+								<button
+										onClick={this.onEditItem}
+										className="btn btn-sm primary-color"
+								>
+									Save
+								</button>
+								<button
+										onClick={this.cancelEdition}
+										className="btn btn-sm danger-color">
+									Cancel
+								</button>
+	            </Fragment>
+					}
 				</td>
 			</tr>
 		)
 	}
 }
-
-const mapStateToProps = (state) => (
-	{ store: state }
-)
 
 const mapDispatchToProps = {
 	editItem,
@@ -114,6 +110,6 @@ const mapDispatchToProps = {
 }
 
 export default connect(
-	mapStateToProps,
+	undefined,
 	mapDispatchToProps
 )(TableRow)
