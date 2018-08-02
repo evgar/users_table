@@ -37,24 +37,10 @@ export const itemsActions = (state = data, action) => {
 		case ADD_ITEM:
 			const updatedItems = [...state]
 			return [...updatedItems, action.user]
-	}
-	// if (action.type === EDIT_ITEM) {
-	// 	const items = [...state]
-	// 	items[action.id] = action.user
-	// 	return items
-	// }
-	//
-	// if (action.type === DELETE_ITEM) {
-	// 	const updatedItems = state.filter((item, i) => i !== action.id)
-	// 	return updatedItems
-	// }
-	//
-	// if (action.type === ADD_ITEM) {
-	// 	const updatedItems = [...state]
-	// 	return [...updatedItems, action.user]
-	// }
 
-	return state
+		default:
+			return state
+	}
 }
 
 export default itemsActions

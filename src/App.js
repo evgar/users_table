@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 import Table from './components/Table'
 import ExportToJSON from './components/ExportToJSON'
 import ExportToCSV from './components/ExportToCSV'
